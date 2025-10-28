@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Ghost Ops — Terms of Service</title>
+<style>
+  /* -------------------------
+     Baseline / Theme
+     ------------------------- */
+  :root{
+    --bg:#050505;
+    --panel:#0f0f10;
+    --muted:#b9b9bb;
+    --text:#e9e9ea;
+    --accent:#7afcff; /* neon accent */
+    --glass: rgba(255,255,255,0.03);
+    --border: rgba(255,255,255,0.06);
+    --radius:14px;
+    --maxw:1100px;
+    --pad:28px;
+    font-family: Inter, "Segoe UI", Roboto, system-ui, -apple-system, "Helvetica Neue", Arial;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    min-height:100%;
+    background:
+      radial-gradient(1200px 400px at 10% 10%, rgba(122,252,255,0.04), transparent 8%),
+      linear-gradient(180deg,#000 0%, #050505 60%);
+    color:var(--text);
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    padding:40px 20px;
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+  }
+
+  /* -------------------------
+     Container
+     ------------------------- */
+  .card{
+    width:100%;
+    max-width:var(--maxw);
+    background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
+    border-radius:20px;
+    box-shadow: 0 12px 50px rgba(2,6,10,0.7);
+    border: 1px solid var(--border);
+    overflow:hidden;
+    display:grid;
+    grid-template-columns: 1fr 320px;
+    gap:28px;
+  }
+
+  /* -------------------------
+     Header
+     ------------------------- */
+  .header{
+    grid-column:1/-1;
+    display:flex;
+    gap:18px;
+    align-items:center;
+    padding:22px var(--pad);
+    border-bottom:1px solid rgba(255,255,255,0.02);
+    background:linear-gradient(90deg, rgba(255,255,255,0.01), transparent);
+  }
+  .logo{
+    width:72px;
+    height:72px;
+    border-radius:14px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:700;
+    color:#010101;
+    background:linear-gradient(135deg,#ffffff,#d6faff);
+    box-shadow: 0 6px 24px rgba(122,252,255,0.06), inset 0 -6px 18px rgba(0,0,0,0.2);
+    font-family:monospace;
+    letter-spacing:1px;
+  }
+  .head-text h1{
+    margin:0;
+    font-size:20px;
+    letter-spacing:0.2px;
+    color:var(--text);
+  }
+  .head-text p{margin:6px 0 0 0; color:var(--muted); font-size:13px}
+
+  .meta{
+    margin-top:6px;
+    font-size:13px;
+    color:var(--muted);
+  }
+
+  /* -------------------------
+     Main content / aside
+     ------------------------- */
+  .main{
+    padding:26px;
+    overflow:auto;
+  }
+  .aside{
+    padding:22px;
+    border-left:1px solid rgba(255,255,255,0.02);
+    background: linear-gradient(180deg, rgba(255,255,255,0.005), transparent);
+    position:sticky;
+    top:28px;
+    height:calc(100vh - 88px);
+    overflow:auto;
+  }
+
+  /* Aside contents */
+  .toc-title{font-weight:600;margin-bottom:10px;color:var(--text)}
+  .toc{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    margin-bottom:18px;
+  }
+  .toc a{
+    color:var(--muted);
+    text-decoration:none;
+    padding:8px 10px;
+    border-radius:10px;
+    font-size:14px;
+    transition:all .18s ease;
+    border:1px solid transparent;
+  }
+  .toc a.active, .toc a:hover{
+    color:var(--text);
+    background:linear-gradient(90deg, rgba(122,252,255,0.06), rgba(255,255,255,0.01));
+    border-color: rgba(122,252,255,0.08);
+    transform:translateX(6px);
+  }
+
+  .contact{
+    margin-top:14px;
+    font-size:13px;
+    color:var(--muted);
+    padding:12px;
+    border-radius:10px;
+    border:1px solid rgba(255,255,255,0.02);
+    background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);
+  }
+  .badge{
+    display:inline-block;
+    padding:6px 10px;
+    font-size:13px;
+    border-radius:999px;
+    color:#020202;
+    background:linear-gradient(90deg, var(--accent), #bffcff);
+    font-weight:600;
+  }
+
+  /* -------------------------
+     Sections & typography
+     ------------------------- */
+  .section{
+    margin-bottom:20px;
+    padding:18px;
+    border-radius:12px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.007), rgba(255,255,255,0.002));
+    border:1px solid rgba(255,255,255,0.02);
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+
+  .section h2{
+    font-size:18px;
+    margin:0 0 8px 0;
+    color:var(--text);
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .section h2 .num{
+    color:var(--accent);
+    font-weight:700;
+    font-family:monospace;
+    background:rgba(122,252,255,0.06);
+    padding:6px 10px;
+    border-radius:8px;
+    font-size:13px;
+  }
+
+  .section p{color:var(--muted); margin:8px 0 0 0; font-size:15px}
+
+  /* small lists */
+  ul{margin:10px 0 0 18px;color:var(--muted)}
+  li{margin:6px 0}
+
+  /* Accordion (collapsible) for details */
+  .accordion{
+    margin-top:12px;
+    border-radius:10px;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,0.02);
+  }
+  .acc-toggle{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    padding:12px 14px;
+    cursor:pointer;
+    background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);
+  }
+  .acc-toggle:hover{background:linear-gradient(90deg, rgba(122,252,255,0.03), rgba(255,255,255,0.01))}
+  .acc-title{font-weight:600;color:var(--text)}
+  .acc-chevron{color:var(--muted); transition:transform .22s ease}
+  .acc-content{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .36s ease, padding .22s ease;
+    padding:0 14px;
+    background:linear-gradient(180deg, transparent, rgba(255,255,255,0.005));
+  }
+  .acc-content.open{padding:12px 14px; max-height:900px}
+
+  /* footer inside card */
+  .card-footer{
+    grid-column:1/-1;
+    padding:16px var(--pad);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-top:1px solid rgba(255,255,255,0.02);
+    background:linear-gradient(180deg, transparent, rgba(0,0,0,0.2));
+  }
+  .small{font-size:13px;color:var(--muted)}
+
+  /* responsive */
+  @media (max-width:1000px){
+    .card{grid-template-columns:1fr}
+    .aside{height:auto; position:static}
+  }
+  @media (max-width:560px){
+    body{padding:18px}
+    .logo{width:54px;height:54px}
+    .head-text h1{font-size:18px}
+  }
+
+  /* smooth appear */
+  .section.appear{transform:translateY(0); opacity:1}
+</style>
+</head>
+<body>
+
+<div class="card" role="document" aria-label="Ghost Ops Nutzungsbedingungen">
+
+  <!-- header -->
+  <div class="header">
+    <div class="logo" aria-hidden="true">GO</div>
+    <div class="head-text">
+      <h1>Ghost Ops — Terms of Service</h1>
+      <p class="meta">Letzte Aktualisierung: 28. Oktober 2025 — Eigentümer: Ben</p>
+    </div>
+  </div>
+
+  <!-- main content -->
+  <main class="main" id="main">
+    <!-- SECTION 1 -->
+    <article id="sec1" class="section" tabindex="0" aria-labelledby="h1">
+      <h2 id="h1"><span class="num">§1</span> Einleitung</h2>
+      <p>Diese Nutzungsbedingungen ("ToS") regeln das Hinzufügen und die Verwendung des Ghost Ops Discord Bots. Durch das Hinzufügen oder die Nutzung des Bots erklärst du dich mit diesen Bedingungen einverstanden. Falls du nicht zustimmst, entferne den Bot von deinem Server und nutze ihn nicht weiter.</p>
+    </article>
+
+    <!-- SECTION 2 -->
+    <article id="sec2" class="section" tabindex="0" aria-labelledby="h2">
+      <h2 id="h2"><span class="num">§2</span> Begriffsbestimmungen</h2>
+      <p><strong>Bot:</strong> Ghost Ops — die Software, die mit der Discord-API interagiert.<br>
+         <strong>Owner:</strong> Ben, Betreiber und Verantwortlicher.<br>
+         <strong>Nutzer:</strong> Jede Person oder Organisation, die den Bot verwendet.</p>
+    </article>
+
+    <!-- SECTION 3 -->
+    <article id="sec3" class="section" tabindex="0" aria-labelledby="h3">
+      <h2 id="h3"><span class="num">§3</span> Nutzung &amp; Funktionsumfang</h2>
+      <p>Ghost Ops bietet Funktionen wie Moderation, Logging, Utility-Kommandos und optionale Erweiterungen. Funktionen können jederzeit aktualisiert, modifiziert oder entfernt werden. Der Bot wird "wie besehen" bereitgestellt. Es bestehen keine garantierten Verfügbarkeiten, außer wenn gesondert vereinbart.</p>
+    </article>
+
+    <!-- SECTION 4 -->
+    <article id="sec4" class="section" tabindex="0" aria-labelledby="h4">
+      <h2 id="h4"><span class="num">§4</span> Verbotene Nutzung</h2>
+      <p>Du darfst den Bot nicht verwenden, um:</p>
+      <ul>
+        <li>gegen geltendes Recht oder Discords Richtlinien zu verstoßen,</li>
+        <li>Hassrede, Belästigung, Bedrohungen oder Mobbing zu verbreiten,</li>
+        <li>illegale Aktivitäten zu fördern oder auszuführen,</li>
+        <li>den Bot oder seine Infrastruktur anzugreifen, zu manipulieren oder auszunutzen,</li>
+        <li>automatisierte Angriffe, Botnets oder unerlaubte Datensammlungen durchzuführen.</li>
+      </ul>
+      <p>Bei Verstößen behält sich der Owner vor, Nutzer oder Server ohne Vorwarnung zu sperren oder den Zugriff zu entziehen.</p>
+    </article>
+
+    <!-- SECTION 5 -->
+    <article id="sec5" class="section" tabindex="0" aria-labelledby="h5">
+      <h2 id="h5"><span class="num">§5</span> Befehle &amp; Moderation</h2>
+      <p>Bestimmte Befehle sind Administratoren oder konfigurierten Rollen vorbehalten. Der Bot führt ausschließlich Aktionen aus, die durch die eingeräumten Discord-Berechtigungen gedeckt sind. Server-Administratoren sind verantwortlich für die korrekte Konfiguration und die verantwortungsvolle Nutzung von Moderationsfunktionen.</p>
+
+      <div class="accordion" aria-hidden="false">
+        <div class="acc-toggle" role="button" aria-expanded="false">
+          <div class="acc-title">Erweiterte Moderationsrichtlinien</div>
+          <div class="acc-chevron">▸</div>
+        </div>
+        <div class="acc-content" aria-hidden="true">
+          <p>Moderation darf nicht willkürlich oder diskriminierend angewendet werden. Logs und Moderationsaktionen sollten dokumentiert und für berechtigte Server-Administratoren einsehbar sein. Ghost Ops stellt lediglich Funktionen bereit; die Verantwortung liegt beim Betreiber des jeweiligen Servers.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- SECTION 6 -->
+    <article id="sec6" class="section" tabindex="0" aria-labelledby="h6">
+      <h2 id="h6"><span class="num">§6</span> Datenspeicherung &amp; Logging</h2>
+      <p>Zur Funktionalität speichert Ghost Ops technische Daten (z. B. Server-ID, Channel-ID, User-ID, Rollen, Konfiguration). Bei aktivierten Logging-Funktionen können auch Nachrichteninhalte temporär erfasst werden.</p>
+      <p>Die Datenverarbeitung erfolgt minimal und zweckgebunden; eine Weitergabe zu kommerziellen Zwecken findet nicht statt. Backups und Speicherung können auf Dienstleistern Dritter erfolgen; dies dient der Wiederherstellung und Stabilität.</p>
+
+      <div class="accordion">
+        <div class="acc-toggle" role="button" aria-expanded="false">
+          <div class="acc-title">Anfrage zur Datenlöschung</div>
+          <div class="acc-chevron">▸</div>
+        </div>
+        <div class="acc-content" aria-hidden="true">
+          <p>Server-Admins können die Löschung ihrer serverbezogenen Daten beim Owner beantragen. Solche Anfragen werden innerhalb einer angemessenen Frist bearbeitet, es sei denn, rechtliche Aufbewahrungspflichten stehen dem entgegen.</p>
+        </div>
+      </div>
+
+    </article>
+
+    <!-- SECTION 7 -->
+    <article id="sec7" class="section" tabindex="0" aria-labelledby="h7">
+      <h2 id="h7"><span class="num">§7</span> Datenschutz &amp; Sicherheit</h2>
+      <p>Ghost Ops verarbeitet personenbezogene Daten nur soweit erforderlich. Es werden angemessene technische und organisatorische Maßnahmen zum Schutz der Daten getroffen. Nutzer sollten dennoch keine sensiblen personenbezogenen Informationen über den Bot übermitteln.</p>
+      <p>Bei Sicherheitsvorfällen (z. B. Datenpanne) wird der Owner, soweit möglich, zeitnah informiert und geeignete Maßnahmen ergriffen. Serverbetreiber sind angehalten, eigene Sicherheitsmaßnahmen zu implementieren.</p>
+    </article>
+
+    <!-- SECTION 8 -->
+    <article id="sec8" class="section" tabindex="0" aria-labelledby="h8">
+      <h2 id="h8"><span class="num">§8</span> Haftung</h2>
+      <p>Soweit gesetzlich zulässig, ist die Haftung des Owners für leichte Fahrlässigkeit ausgeschlossen. Der Owner haftet nur für Schäden aus vorsätzlichem oder grob fahrlässigem Verhalten oder für Schäden aus der Verletzung des Lebens, des Körpers oder der Gesundheit.</p>
+      <p>Die Haftung für entgangenen Gewinn, ausgebliebene Einsparungen oder sonstige mittelbare Folgeschäden ist, soweit rechtlich zulässig, ausgeschlossen.</p>
+    </article>
+
+    <!-- SECTION 9 -->
+    <article id="sec9" class="section" tabindex="0" aria-labelledby="h9">
+      <h2 id="h9"><span class="num">§9</span> Änderungen &amp; Updates</h2>
+      <p>Die ToS können angepasst werden, wenn dies aus Gründen der Gesetzesänderung, technischer Entwicklung oder zur Verbesserung des Dienstes erforderlich ist. Wesentliche Änderungen werden angekündigt; es obliegt dem Nutzer, die jeweils aktuelle Fassung einzusehen.</p>
+    </article>
+
+    <!-- SECTION 10 -->
+    <article id="sec10" class="section" tabindex="0" aria-labelledby="h10">
+      <h2 id="h10"><span class="num">§10</span> Kündigung &amp; Entfernung</h2>
+      <p>Der Owner kann den Dienst, einzelne Funktionen oder den Zugriff jederzeit einstellen. Server-Admins können Ghost Ops jederzeit entfernen. Bei wiederholten oder schwerwiegenden Verstößen kann der Owner Server vom Dienst ausschließen.</p>
+    </article>
+
+    <!-- SECTION 11 -->
+    <article id="sec11" class="section" tabindex="0" aria-labelledby="h11">
+      <h2 id="h11"><span class="num">§11</span> Kontakt</h2>
+      <p>Fragen, Beschwerden oder Auskunftsanfragen (z. B. zur Datenverarbeitung) sende bitte an den Owner: <strong>Ben</strong>. Kontaktaufnahme vorzugsweise über Discord (Owner-Konto) oder über im Bot bereitgestellte Kontaktfunktionen.</p>
+    </article>
+
+    <!-- SECTION 12 -->
+    <article id="sec12" class="section" tabindex="0" aria-labelledby="h12">
+      <h2 id="h12"><span class="num">§12</span> Schlussbestimmungen</h2>
+      <p>Es gilt das Recht der Bundesrepublik Deutschland. Sollte eine Bestimmung dieser ToS unwirksam oder undurchsetzbar sein, bleibt die Wirksamkeit der übrigen Bestimmungen unberührt. Diese ToS treten mit Veröffentlichung in Kraft.</p>
+    </article>
+
+  </main>
+
+  <!-- aside / toc -->
+  <aside class="aside" aria-label="Inhaltsverzeichnis">
+    <div class="toc-title">Inhalt</div>
+    <nav class="toc" aria-label="Table of contents">
+      <a href="#sec1" data-target="sec1">§1 Einleitung</a>
+      <a href="#sec2" data-target="sec2">§2 Begriffe</a>
+      <a href="#sec3" data-target="sec3">§3 Nutzung</a>
+      <a href="#sec4" data-target="sec4">§4 Verbotenes</a>
+      <a href="#sec5" data-target="sec5">§5 Befehle</a>
+      <a href="#sec6" data-target="sec6">§6 Datenspeicherung</a>
+      <a href="#sec7" data-target="sec7">§7 Datenschutz</a>
+      <a href="#sec8" data-target="sec8">§8 Haftung</a>
+      <a href="#sec9" data-target="sec9">§9 Änderungen</a>
+      <a href="#sec10" data-target="sec10">§10 Kündigung</a>
+      <a href="#sec11" data-target="sec11">§11 Kontakt</a>
+      <a href="#sec12" data-target="sec12">§12 Schluss</a>
+    </nav>
+
+    <div class="contact" role="group" aria-label="Kontakt">
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <div>
+          <div class="small">Owner</div>
+          <div style="margin-top:6px;font-weight:600">Ben</div>
+        </div>
+        <div><span class="badge">Kontakt</span></div>
+      </div>
+      <p style="margin-top:10px;color:var(--muted);font-size:13px">Für Datenschutz- oder Löschanfragen nutze die Discord-Kontaktfunktion oder den Owner-Account.</p>
+    </div>
+
+  </aside>
+
+  <!-- footer -->
+  <div class="card-footer">
+    <div class="small">Ghost Ops — © 2025 Ben</div>
+    <div class="small">Letzte Änderung: 28. Oktober 2025</div>
+  </div>
+
+</div>
+
+<script>
+/* -------------------------
+   Smooth scroll & ScrollSpy
+   ------------------------- */
+document.querySelectorAll('.toc a').forEach(a=>{
+  a.addEventListener('click', (e)=>{
+    e.preventDefault();
+    const id = a.getAttribute('data-target');
+    const el = document.getElementById(id);
+    if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+    // Update active immediately
+    document.querySelectorAll('.toc a').forEach(x=>x.classList.remove('active'));
+    a.classList.add('active');
+  });
+});
+
+/* IntersectionObserver for active ToC and reveal */
+const sections = document.querySelectorAll('main .section');
+const tocLinks = Array.from(document.querySelectorAll('.toc a'));
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('visible');
+      // set active link
+      const id = entry.target.id;
+      tocLinks.forEach(link=>{
+        if(link.dataset.target === id) link.classList.add('active'); else link.classList.remove('active');
+      });
+    }
+  });
+},{threshold:0.28});
+sections.forEach(s=>io.observe(s));
+
+/* Accordion toggles */
+document.querySelectorAll('.acc-toggle').forEach(toggle=>{
+  const chevron = toggle.querySelector('.acc-chevron');
+  const content = toggle.nextElementSibling;
+  toggle.addEventListener('click', ()=>{
+    const open = content.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', String(open));
+    content.setAttribute('aria-hidden', String(!open));
+    chevron.style.transform = open ? 'rotate(90deg)' : 'rotate(0deg)';
+  });
+});
+
+/* Accessibility: allow toggles with Enter/Space */
+document.querySelectorAll('.acc-toggle').forEach(el=>{
+  el.tabIndex = 0;
+  el.addEventListener('keydown', (e)=>{
+    if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); el.click(); }
+  });
+});
+
+/* ensure first ToC link active on load */
+window.addEventListener('load', ()=>{
+  const first = document.querySelector('.toc a');
+  if(first) first.classList.add('active');
+});
+</script>
+
+</body>
+</html>
